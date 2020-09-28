@@ -102,7 +102,6 @@ function gameOver() {
    endgameEl.innerHTML = `
     <h1>Time ran out</h1>
     <p>Your final score is ${score}</p>
-    <p>Best score is ${bestScore}</p>
     <button onclick="location.reload()">Reload</button>
   `;
 
