@@ -39,7 +39,7 @@ let randomWord;
 // Init score
 let score = 0;
 
-let bestScore;
+let result = 0;
 
 // Init time
 let time = 10;
@@ -62,12 +62,6 @@ text.focus();
 // Start counting down
 const timeInterval = setInterval(updateTime, 1000);
 
-//  if (localStorage.getItem(score) === null) {
-//     bestScore = 0
-//  } else {
-//     bestScore = Math.max(score);
-//  }
-
 
 // Generate random word from array
 function getRandomWord() {
@@ -85,7 +79,10 @@ function updateScore() {
    score++;
    scoreEl.innerHTML = score;
 }
-
+function bestScore() {
+   result++;
+   resultEl.innerHTML = result;
+}
    
 
 // Update time
@@ -102,15 +99,6 @@ function updateTime() {
 
 // Game over, show end screen
 function gameOver() {
-   if (localStorage.getItem(score) === null) {
-      return Math.max(score);
-   } else {
-      bestScore = Math.max(score);
-   }
-      
-
-
-
    endgameEl.innerHTML = `
     <h1>Time ran out</h1>
     <p>Your final score is ${score}</p>
@@ -118,13 +106,7 @@ function gameOver() {
     <button onclick="location.reload()">Reload</button>
   `;
 
-
    endgameEl.style.display = 'flex';
-
-   function result() {
-      bestScore = Math.max(score);
-     
-   }
 }
 addWordToDOM();
 
@@ -138,8 +120,8 @@ text.addEventListener('input', e => {
    if (insertedText === randomWord) {
       addWordToDOM();
       updateScore();
-
-
+      bestScore();
+      
 
       // Clear
       e.target.value = '';
